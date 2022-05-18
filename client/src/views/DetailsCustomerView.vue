@@ -62,7 +62,12 @@ export default {
                     this.data = response.data;
                     this.isLoading = false;
                 } catch (error) {
-                    // handle errors
+                    if(error.response.status === 500){
+                        this.$router.push('/error/500');
+                    }
+                    if(error.response.status === 404){
+                        this.$router.push('/error/404');
+                    }
                 }
             },
             async deleteCustomer(){
@@ -73,7 +78,12 @@ export default {
                         this.$router.push('/customers')
                     }
                 } catch (error) {
-
+                    if(error.response.status === 500){
+                        this.$router.push('/error/500');
+                    }
+                    if(error.response.status === 404){
+                        this.$router.push('/error/404');
+                    }
                 }
             },
             editOpen(){

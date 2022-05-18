@@ -130,7 +130,6 @@ class CustomersControllerTest extends TestCase
     {
 
         $userData = [
-            'title' => 'Mr.',
             'name' => 'TestName2',
             'surname' => 'Test2',
             'phone' => '+48000000001',

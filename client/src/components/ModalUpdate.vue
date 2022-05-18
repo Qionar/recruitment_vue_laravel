@@ -88,6 +88,12 @@ export default {
             } catch (error) {
                 console.log(error);
                 this.validationError = error.response.data;
+                if(error.response.status === 500){
+                    this.$router.push('/error/500');
+                }
+                if(error.response.status === 404){
+                    this.$router.push('/error/404');
+                }
             }
 
         }

@@ -115,6 +115,9 @@ export default {
                 this.$emit('closeModal', true);
             } catch (error) {
                 this.validationError = error.response.data;
+                if(error.response.status === 500){
+                    this.$router.push('/error/500');
+                }
             }
 
         }
