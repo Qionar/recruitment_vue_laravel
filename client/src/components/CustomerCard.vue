@@ -1,7 +1,7 @@
 <template>
   <router-link :to="`/customers/details/${customer.id}`" class="card">
         <img :src="`${host}/${customer.profile_image}`" alt="">
-        <hr>
+        <!-- <hr> -->
         <p class="name">
             {{ customer.name + " " + customer.surname }}
         </p>
@@ -35,6 +35,11 @@ export default {
         cursor: pointer;
         transition: .3s linear;
 
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
         text-align: center;
         font-size: 25px;
         text-decoration: none;
@@ -50,8 +55,16 @@ export default {
     }
 
     .card hr{
+        width: 100%;
         border: none;
         border-top: 1px solid rgba(128, 128, 128, 0.41);
         margin: 10px 0px;
+    }
+
+    .name{
+        border-top: 1px solid rgba(128, 128, 128, 0.41);
+        margin-top: 10px;
+        padding-top: 5px;
+        width: 100%;
     }
 </style>

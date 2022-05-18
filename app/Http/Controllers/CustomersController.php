@@ -32,9 +32,14 @@ class CustomersController extends Controller
             'name' => 'required|string',
             'surname' => 'required|string',
             'phone' => 'required|string',
-            'email' => 'required|email',
-            'profile_image' => 'image|required_if:use_placeholder,0'
+            'email' => 'required|email'
         ];
+
+        // return response()->json((int)$request->input('use_placeholder'), 422);
+
+        if ((int)$request->input('use_placeholder') === 0) {
+            $rule['profile_image'] = 'required|image';
+        }
 
         $validator = Validator::make($request->all(), $rule);
 
@@ -49,10 +54,10 @@ class CustomersController extends Controller
         $customer->phone = $request->input('phone');
         $customer->email = $request->input('email');
 
-        if ($request->input('use_placeholder') === 0) {
+        if ((int)$request->input('use_placeholder') === 0) {
 
-            $imgName = sha1(time()) . $request->img->extension();
-            $validator->img->move(public_path('/img/'), $imgName);
+            $imgName = sha1(time()) . $request->profile_image->getClientOriginalName();
+            $request->profile_image->move(public_path('/img/'), $imgName);
             $customer->profile_image = 'img/' . $imgName;
         } else {
 
@@ -72,9 +77,7 @@ class CustomersController extends Controller
     {
         $customer = Customer::findOrFail($id);
 
-
         $rule = [
-            'title' => 'required|string',
             'name' => 'required|string',
             'surname' => 'required|string',
             'phone' => 'required|string',
@@ -87,7 +90,6 @@ class CustomersController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $customer->title = $request->input('title');
         $customer->name = $request->input('name');
         $customer->surname = $request->input('surname');
         $customer->phone = $request->input('phone');

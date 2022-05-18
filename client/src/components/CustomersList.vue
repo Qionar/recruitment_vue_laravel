@@ -27,4 +27,29 @@ export default {
         grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 30px;
     }
+
+    @media screen and (min-width: 768px) and (max-width: 1020px){
+        .cards-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+        }
+    }
+
+    @media screen and (min-width: 568px) and (max-width: 767px){
+        .cards-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+    }
+
+    @media screen and (max-width: 567px){
+        .cards-wrapper {
+            display: grid;
+            grid-template-columns: 1fr ;
+            gap: 30px;
+        }
+    }
+    
 </style>

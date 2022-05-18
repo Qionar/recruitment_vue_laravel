@@ -1,13 +1,14 @@
 <template>
   <div class="customers-page-wrapper">
-    <nav-bar @search="filterCustomers"></nav-bar>
+    <nav-bar @search="filterCustomers" @openModal="isModalOpen=true"></nav-bar>
     <customers-list v-if="customers.length > 0"  :customers="customers"></customers-list>
     <div v-else class="customers-loading-handler">
       <div v-if="isFetching === false" class="customers-not-found">
         Customers Not Found.
       </div>
-      <div v-else class="customers-loader"></div>
+      <div v-else class="customers-loader"></div> 
     </div>
+    <modal-create v-if="isModalOpen === true" @closeModal="isModalOpen=false" @addNewCustomer="addNewCustomer"/>
   </div>
 </template>
 
@@ -17,16 +18,18 @@ import axios from "axios";
 
 import CustomersList from '@/components/CustomersList.vue';
 import NavBar from '@/components/NavBar.vue';
+import ModalCreate from '@/components/ModalCreate.vue';
 
 export default {
   components: {
-    CustomersList, NavBar
+    CustomersList, NavBar, ModalCreate
   },
   data() {
     return {
         isFetching: false,
         responseData: [],
-        customers: []
+        customers: [],
+        isModalOpen: false
     }
   },
   methods: {
@@ -38,7 +41,7 @@ export default {
           this.responseData = response.data;
           this.customers = response.data;
           this.isFetching = false;
-        }, 2000);
+        }, 1000);
       } catch (error) {
         // redirect to 500 error page
       }
@@ -54,6 +57,9 @@ export default {
         }
       })
 
+    },
+    addNewCustomer(customer){
+      this.fetchCustomers();
     }
   },
   mounted(){

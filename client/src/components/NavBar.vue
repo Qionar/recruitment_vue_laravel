@@ -17,7 +17,7 @@ export default {
             this.$emit('search', searchInput);
         },
         modalHandler(){
-            // open modal window...
+            this.$emit('openModal', true);
         }
     }
 }
@@ -52,5 +52,17 @@ export default {
         -webkit-box-shadow: 0px 5px 24px -10px rgba(66, 68, 90, 1);
         -moz-box-shadow: 0px 5px 24px -10px rgba(66, 68, 90, 1);
         box-shadow: 0px 5px 24px -10px rgba(66, 68, 90, 1);
+    }
+
+    @media screen and (min-width: 568px) and (max-width: 767px){
+        .nav-add-button{
+            font-size: 20px;
+        }
+    }
+
+    @media screen and (max-width: 567px){
+        .nav-add-button{
+            font-size: 18px;
+        }
     }
 </style>

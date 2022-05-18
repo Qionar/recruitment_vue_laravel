@@ -43,4 +43,16 @@ export default {
         -moz-box-shadow: 0px 5px 24px -10px rgba(66, 68, 90, 1);
         box-shadow: 0px 5px 24px -10px rgba(66, 68, 90, 1);
     }
+
+    @media screen and (min-width: 568px) and (max-width: 767px){
+        .search-area-wrapper input{
+            font-size: 20px;
+        }
+    }
+
+    @media screen and (max-width: 567px){
+        .search-area-wrapper input{
+            font-size: 18px;
+        }
+    }
 </style>
